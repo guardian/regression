@@ -27,6 +27,8 @@ Ongoing news at the Learning Group(s) channel.
 Rough outline:
 
 Week 1: Introduction and linear regression
+exercises: https://github.com/guardian/regression/blob/master/notes/week1-written.pdf
+notes: https://github.com/guardian/regression/blob/master/tex/week1.pdf
 
 Week 2: Gradient Descent and linear regression wrap up
 
