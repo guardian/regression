@@ -1,6 +1,7 @@
 \documentclass[12pt]{article}
 \usepackage{graphicx}
 \usepackage{hyperref}
+\usepackage{algorithm2e}
 \graphicspath{ {./images/} }
 \begin{document}
 
@@ -47,22 +48,28 @@ Here is a computational problem:
 
 \textit{Input} A list of integers, unordered
 
-\textit{Output} The largest integer in the set. 
+\textit{Output} The largest integer in the list. 
 
 An algorithm is simply a way to transform the input to the output. \\
 
 
-Here's an algorithm for \textbf{Max of a set}:
+Here's an algorithm for \textbf{Max of a set}:\\
 
-Set $maxValueSoFar$ to the first value in the list
-
-For each value $v$ in the list:
-
-	If ($v > maxValueSoFar$)
-	
-		$maxValueSoFar := v$
-		
-Return $maxValueSoFar$
+\begin{algorithm}[H]
+    \SetAlgoLined
+    \KwData{\textit{inputList}, an unordered list }
+    \KwResult{The largest integer in the list }
+    Set $maxValueSoFar$ to the first value in the list \\
+    
+    \For{each item $i$ in \textit{inputList}}{
+    
+    \If{($v > maxValueSoFar$}{
+    	$maxValueSoFar := v$
+    }
+    \Return $maxValueSoFar$
+    }
+    \caption{algorithm for \textbf{Max of a set}}
+\end{algorithm}
 
 \includegraphics[width={0.75\textwidth}]{algo-abstract}
 
