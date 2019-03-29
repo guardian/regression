@@ -31,6 +31,11 @@ Week 1: Introduction and linear regression
 exercises: https://github.com/guardian/regression/blob/master/notes/week1-written.pdf
 
 notes: https://github.com/guardian/regression/blob/master/tex/week1.pdf
+The notes reference the Stanford Machine Learning course on Coursera and Machine Learning for humans but I just noticed the links merely Work On My Machine and not in the PDF once it's landed here on github so I've added those links below. 
+
+Machine learning course on coursera: https://www.coursera.org/learn/machine-learning
+
+Machine learning for humans: https://medium.com/machine-learning-for-humans/why-machine-learning-matters-6164faf1df12
 
 Week 2: Gradient Descent and linear regression wrap up
 
