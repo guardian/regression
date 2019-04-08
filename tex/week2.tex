@@ -138,11 +138,15 @@
 
     and then for each $x_i^{(j)} $, $-0.5 \leq x_i^{(j)}  \leq 0.5$
     
-
-    
     Mean normalisation isn't the only approach to take for feature scaling, but it will work well enough for our purposes here. \textit{Min-max scaling} and \textit{unit vector scaling} are also common, but we won't cover them here. 
     
-    //TODO: how feature scaling fits into the overall model of training set $\rightarrow$ h $\rightarrow $ predictions
-
+    
+    \begin{figure}
+        \includegraphics[width=\textwidth]{feature-scaling-data}
+        \caption{Feature scaling when building a model and when making predictions }
+        \label{fig:feature-scaling-data}
+    \end{figure}
+    
+    We already know that feature scaling is a good idea if we need to run gradient descent. To do so, we apply a technique such as mean normalisation just to our $x$s.  So, when we run gradient descent, it is on data with scaled features. This means that when we want to make predictions, we must apply the same technique we used to scale our features when building the model, to the features in the new data we want to make predictions for. See Figure \ref{fig:feature-scaling-data}.
 
 \end{document}
