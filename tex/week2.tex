@@ -104,7 +104,7 @@
     Imagine we are building a model where we and we have a feature $x_1$ which corresponds to age, and another $x_2$ which is annual income in pounds. In our dataset, the range of $x_1$ might be 18-65, and $x_2$ could be £10K-£500K. These features have very different ranges! If we tried to run gradient descent with this dataset as is, we'd end up trying to traverse a warped landscape. This is going to:
     \begin{itemize}
 	\item Make our run of gradient descent \textit{slow}
-	\item Make it harder to choose $alpha$ and the number of iterations needed
+	\item Make it harder to choose $\alpha$ and the number of iterations needed
 \end{itemize}
  
     
@@ -129,14 +129,16 @@
     
     We can speed up gradient descent by ensuring that our data falls into similar ranges, while maintaining the shape of the data. In our case with one feature, LotArea, LotArea and selling price seem to have a linear relationship. After scaling LotArea, it will still have a linear relationship with selling price. 
 
-    One common technique is \textit{mean normalisation}
-
-    For some feature $x_i$, we find the mean $\mu_i$ and the range $s_i$ (max value - min value). Then for each point $j$ in $x_i$:
+    One common technique is \textit{mean normalisation}. We can apply mean normalisation to our features in the following way: \\
+    
+    Each feature $x_i$ has a range $s_i$ which is \{the max value in $x_i$\} - \{the min value in $x_i$\}. Each feature also has a mean $u_i$.
+    
+    Then for each point $j$ in $x_i$:
     \[
-        x_i^{(j)} \leftarrow \frac{x_i^{(j)} - \mu_i^{(j)}}{s_i^{(j)}}
+        x_i^{(j)} \leftarrow \frac{x_i^{(j)} - \mu_i^{(j)}}{s_i}
     \]
 
-    and then for each $x_i^{(j)} $, $-0.5 \leq x_i^{(j)}  \leq 0.5$
+    and then for each $x_i^{(j)} $, $-0.5 \leq x_i^{(j)}  \leq 0.5$ \\
     
     Mean normalisation isn't the only approach to take for feature scaling, but it will work well enough for our purposes here. \textit{Min-max scaling} and \textit{unit vector scaling} are also common, but we won't cover them here. 
     
@@ -148,5 +150,20 @@
     \end{figure}
     
     We already know that feature scaling is a good idea if we need to run gradient descent. To do so, we apply a technique such as mean normalisation just to our $x$s.  So, when we run gradient descent, it is on data with scaled features. This means that when we want to make predictions, we must apply the same technique we used to scale our features when building the model, to the features in the new data we want to make predictions for. See Figure \ref{fig:feature-scaling-data}.
+    
+    \subsection{How good is our model?}
+    
+Recall from week 1 that we do not use all of our labelled data to build our model. We want to set aside a set of \textit{test data} so that we can evaluate how accurate our model is. That way, when we make changes to our model, we'll be able to quantify if that has caused the model to perform better or not. 
+
+Recall our cost function:
+\[J(\theta_0, \theta_1) = \frac{1}{2m} \sum^m_{i=1}(h_\theta(x^{(i)}) - y^{(i)})^2\]
+
+This was based on Mean Squared Error which squared the error for each data point, and then summed over all of the squared errors.
+
+Now that (for the moment) we have finished training our model, we will sum the absolute value of the error for each data point:
+
+\[MeanAbsoluteError = \frac{1}{m} \sum^m_{i=1}|h_\theta(x^{(i)}) - y^{(i)}|\]
+
+Then, later on, if we were to make some improvements to our model, we could calculate the absolute again and see which model is more accurate. 
 
 \end{document}
