@@ -26,7 +26,7 @@ Ongoing news at the Learning Group(s) channel.
 
 Rough outline:
 
-Week 1: Introduction and linear regression
+### Week 1: Introduction and linear regression
 
 exercises: https://github.com/guardian/regression/blob/master/notes/week1-written.pdf
 
@@ -37,10 +37,24 @@ Machine learning course on coursera: https://www.coursera.org/learn/machine-lear
 
 Machine learning for humans: https://medium.com/machine-learning-for-humans/why-machine-learning-matters-6164faf1df12
 
-Week 2: Gradient Descent and linear regression wrap up
+### Week 2: Gradient Descent and linear regression wrap up
 
-Week 3: Linear algebra review + vectorising your gradient descent implementation
+notes: https://github.com/guardian/regression/blob/master/tex/week2.pdf
 
-Week 4: Logistic regression + applying it to the Titanic dataset
+exercises:
 
-Week 5: If we get behind, then finishing up the previous topics
+- Implement `linearMeanSquaredError` and `linearMeanAbsoluteError` in `LinearErrorCalculator` (note: there is already a `LinearErrorCalculatorTest`)
+- Implement `theta0Updated` and `theta1Updated` in `GradientDescent` (note: there is already a `GradientDescentTest`)
+- With the help of `GradientDescentApp`, implement the `gradientDescent` function in the `GradientDescent` object. `GradientDescentApp` loads the house prices training data, calls the `gradientDescent` function, and then launches of plot of cost vs number of iterations. You'll know you're on the right track when cost decreases with every iteration (see: the cost vs iterations plot in the week 2 notes for a graph that shows gradient descent has converged). 
+- `GradientDescentAndCheckTestSetApp` will do the same as `GradientDescentApp` and additionally load in the test set, and calulate the Mean Absolute Error
+
+bonus points:
+
+- Start thinking about how you could improve your model. I started with the Ames dataset: https://www.kaggle.com/c/house-prices-advanced-regression-techniques and just extracted lot size and selling price. Does Mean Absolute Error improve if you pick a feature that might be a better predictor of selling price? Then you can also feel some data munging pain that is a very authentic experience. :D
+
+
+### Week 3: Linear algebra review + vectorising your gradient descent implementation
+
+### Week 4: Logistic regression + applying it to the Titanic dataset
+
+### Week 5: If we get behind, then finishing up the previous topics
