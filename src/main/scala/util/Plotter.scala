@@ -57,9 +57,9 @@ object Plotter {
     val titleOrDefault = title.getOrElse(s"$xLabel vs $yLabel data and line fit via linear regression")
 
     Overlay(
-      FunctionPlot.series(function = x => theta1 * x + theta0, name = s"y = $theta1 + $theta0",
+      FunctionPlot.series(function = x => theta1 * x + theta0, name = s"y = $theta1 x + $theta0",
         color = HTMLNamedColors.green,
-        xbounds = Some(Bounds(-1, 1))
+        xbounds = Some(Bounds(-0.5, 1))
       ),
       ScatterPlot(
         points,

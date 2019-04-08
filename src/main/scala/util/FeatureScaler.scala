@@ -76,7 +76,7 @@ object FeatureScaler {
     data.map { point =>
       SimplePoint(
         scaled(minX, maxX, xAvg, point.x),
-        scaled(minY, maxY, yAvg, point.y),
+        point.y
       )
     }
   }

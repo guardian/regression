@@ -37,7 +37,7 @@ object GradientDescentAndCheckTestSetApp {
 
 
     //load in test data
-    val housePricesTestData = CsvReader.asCaseClassList("/house-prices-test.csv", true, arrayToHouse)
+    val housePricesTestData = CsvReader.asCaseClassList("house-prices-test.csv", true, arrayToHouse)
     val housePricesTestDataPoints = HouseTo2dPoint(housePricesTestData)
     val housePricesTestDataScaled = FeatureScaler.meanNormalisedData(housePricesTestDataPoints)
 
