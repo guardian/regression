@@ -6,7 +6,7 @@ import org.specs2.mutable.Specification
 class FeatureScalerTest extends Specification {
 
   "meanNormalisedData" should {
-    "scale the data in " in {
+    "scale the features and not the y in " in {
       val inputData = List(
         SimplePoint(78, 90),
         SimplePoint(55, 50),
@@ -16,11 +16,11 @@ class FeatureScalerTest extends Specification {
       )
 
       val expected = List(
-        SimplePoint(0.22352941176470573, 0.3949999999999999),
-        SimplePoint(-0.4529411764705884, -0.6050000000000001),
-        SimplePoint(-0.48235294117647076, -0.45500000000000007),
-        SimplePoint(0.19411764705882337, 0.2699999999999999),
-        SimplePoint(0.5176470588235292, 0.3949999999999999)
+        SimplePoint(0.22352941176470573, 90),
+        SimplePoint(-0.4529411764705884, 50),
+        SimplePoint(-0.48235294117647076, 56),
+        SimplePoint(0.19411764705882337, 85),
+        SimplePoint(0.5176470588235292, 90)
       )
 
       val scaled = FeatureScaler.meanNormalisedData(inputData)
