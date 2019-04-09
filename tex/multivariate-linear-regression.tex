@@ -1,0 +1,180 @@
+%%
+%% Author: leigh-anne_mathieson
+%% 2019-03-26
+%%
+
+% Preamble
+\documentclass[11pt]{article}
+
+% Packages
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{algorithm2e}
+\graphicspath{ {./images/} }
+% Document
+\begin{document}
+
+\section{Week 3: Linear regression with multiple variables}
+
+So far, you've been willing to humour me with trying to predict house prices with just one variable. But there's plenty of information in the Ames dataset that might help us have better predictions.
+
+Imagine we find that there are 20 features that might help us make better predictions. We could go and edit 
+
+\begin{verbatim}
+case class SimplePoint(x: Double, y: Double)
+\end{verbatim}
+
+and start adding our features
+
+\begin{verbatim}
+case class House(
+	MSZoning: Int, 
+	LotFrontage: Double, 
+	LotArea: Double, 
+	LandContour: Int, 
+	LotConfiguration: Int, ....
+)
+\end{verbatim}
+
+but this will create a cascade where we need to then have a way to calculate mean squared error for a house, and an implementation of Gradient Descent that works for a house, and so on. We need a more general way to represent our data. 
+
+\subsection{Matrices}
+
+If we can generalise our gradient descent model to work in terms of matrices, then our model will be flexible and we can easily change how many features we wish to consider. 
+
+First, we need to review matrix operations. Khan academy has great resources for this with interactive exercises to try out, so I'll just link to those resources below (if you look at this with a pdf viewer [not github's web viewer], you should be able to click on the link, otherwise just copy/paste. 
+
+
+\subsubsection{Matrix dimensions} 
+
+Here is an introduction to matrices, including matrix dimensions: \\
+
+\href{https://www.khanacademy.org/math/precalculus/precalc-matrices/intro-to-matrices/a/intro-to-matrices}{https://www.khanacademy.org/math/precalculus/precalc-matrices/intro-to-matrices/a/intro-to-matrices}
+
+\subsubsection{Matrix addition}
+
+Here is how you can add and subtract matrices: \\
+
+\href{https://www.khanacademy.org/math/precalculus/precalc-matrices/adding-and-subtracting-matrices/a/adding-and-subtracting-matrices}{https://www.khanacademy.org/math/precalculus/precalc-matrices/adding-and-subtracting-matrices/a/adding-and-subtracting-matrices}
+
+\subsubsection{Scalar multiplication}
+
+Here is how you can multiply matrices by a scalar:\\
+
+ \href{https://www.khanacademy.org/math/precalculus/precalc-matrices/multiplying-matrices-by-scalars/a/multiplying-matrices-by-scalars}{https://www.khanacademy.org/math/precalculus/precalc-matrices/multiplying-matrices-by-scalars/a/multiplying-matrices-by-scalars}
+
+
+\subsubsection{Matrix multiplication}
+
+Here is how you can multiply matrices together: \\
+
+\href{https://www.khanacademy.org/math/precalculus/precalc-matrices/multiplying-matrices-by-matrices/a/multiplying-matrices}{https://www.khanacademy.org/math/precalculus/precalc-matrices/multiplying-matrices-by-matrices/a/multiplying-matrices}
+
+\subsection{Linear regression with multiple features}
+
+Now that we have $n$ features $x_1, x_2, ..., x_n$, we must update our hypothesis:\\
+
+\textbf{Hypothesis}: $h_\theta(x) = \theta_0 + \theta_1x_1+ \theta_2x_2 + ... +  \theta_nx_n$ (we think that a line will fit our data) \\
+
+And so our model will have $n$ parameters \\
+
+\textbf{Parameters}: $\theta_0$, $\theta_1$, ... , $\theta_n$ \\
+
+\textbf{Cost function}: \(J(\theta_0, \theta_1,..., \theta_n) = \frac{1}{2m} \sum^m_{i=1}(h_\theta(x^{(i)}) - y^{(i)})^2\) \\
+
+From here, we will refer to $J(\theta_0, \theta_1,..., \theta_n) $ as $J(\theta)$\\
+
+\textbf{Goal}: minimise $J(\theta)$. Once we have $\theta_0$, $\theta_1$, ..., $\theta_n$ we can plug them into our hypothesis and make predictions!\\
+
+We can also now express our model in terms of matrices. We know that in our hypothesis we have parameter $\theta_0$, so for the convenience of tidier notation we'll define $x_0^{(i)}$ for all $i$. Let $X$ be the $n x m$ matrix where there is a column for each feature. Let $y$ be a $m x 1$ matrix.
+
+So let's go back to our table of sample data: 
+\begin{table}[htp]
+\caption{Sample from a dataset of heights and weights}
+\label{table:sample-ames}
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$x_1$ & $x_2$ & $x_3$ & $x_4$ & $y$\\ \hline
+Id & LotArea & LotFrontage & NumberOfBedrooms & SellingPrice \\ \hline
+1143 & 9965.0 & 440 & 2 & 424870.0 \\
+1105 & 2016.0 & 320 & 3 & 106000.0 \\
+923 & 10237.0 & 800 & 3 & 169990.0\\
+499& 7800.0 & 200 & 5 & 130000.0\\
+1124 & 9405.0 & 180 & 4 & 118000.0 \\
+\hline
+\end{tabular}
+\end{center}
+\label{Sample housing price data}
+\end{table}%
+
+We would have 
+ \(\begin{bmatrix}
+ 1 & 1 & 1 & 1 & 1 \\
+1143 & 1105 & 923 & 499 & 1124 \\
+9965.0 & 2016.0 & 10237.0 & 7800 & 9405.0 \\
+440 & 320 & 800 & 200 & 180 \\
+2 & 3 & 3 & 5 & 4 
+ \end{bmatrix} \)
+ 
+ And our $y$, the value we will be trying to predict as
+\( y = \begin{bmatrix}
+424870.0 \\
+106000.0 \\
+169990.0\\
+130000.0\\
+118000.0 \\
+ \end{bmatrix}
+\)
+
+Let's also define our parameters as a matrix $\theta = 
+\begin{bmatrix}
+\theta_0 \\
+\theta_1 \\
+\theta_2 \\
+\theta_3 \\
+\theta_4\\
+ \end{bmatrix}
+ $
+
+Recall our hypothesis: $h_\theta(x) = \theta_0 + \theta_1x_1+ \theta_2x_2 + ... +  \theta_nx_n$ (we think that a line will fit our data)
+
+If we let  $x^{(i)}$ represent the $i$th training example, $x^{(i)} = $\(\begin{bmatrix}
+x_0^{(i)} \\
+x_1^{(i)} \\
+x_2^{(i)} \\
+x_3^{(i)} \\
+x_4^{(i)} \\
+ \end{bmatrix}\)
+ 
+Then we can express our model as the following:\\
+
+\textbf{Hypothesis}: $h_\theta(x^{(i)}) = \theta^Tx^{(i)}$\\
+
+\textbf{Parameters}: $\theta$ (our vector of thetas)\\
+
+\textbf{Cost function}: 
+\[J(\theta_0, \theta_1,..., \theta_n) = \frac{1}{2m} \sum^m_{i=1}(h_\theta(x^{(i)}) - y^{(i)})^2\]\\
+
+We also need to update our algorithm for gradient descent:
+
+    \begin{algorithm}
+    \SetAlgoLined
+    \KwData{ An $m \times n$ matrix with $n$ features and $m$ training examples, $y$, a $m \times 1$ matrix}
+    \KwResult{$\theta$ a $n \times 1$ matrix of parameters for the line that fits the input data }
+     set some initial values for $\theta_0, \theta_1, ..., \theta_n$ \\
+    
+    \While{we have not reached convergence}{
+    	\For{each $j$ in range 0 up to $n$}{
+   	 \[\theta_j := \theta_j - \alpha \frac{1}{m} \sum^m_{i=1} (h_\theta(x^{(i)}) - y^{(i)}) \times x^{(i)}\]
+	 }
+	}
+	
+
+    \Return $\theta_0, \theta_1, ..., \theta_n$
+
+    \caption{\textbf{gradient descent}}
+\end{algorithm} 
+
+\end{document}
