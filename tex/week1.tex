@@ -1,6 +1,7 @@
 \documentclass[12pt]{article}
 \usepackage{graphicx}
 \usepackage{hyperref}
+\usepackage{algorithm2e}
 \graphicspath{ {./images/} }
 \begin{document}
 
@@ -16,13 +17,17 @@ Machine learning is all around us! Here are a couple examples that come to mind:
 
 It's why I don't have to sift through these emails in my inbox.
 
-\includegraphics[width=\textwidth]{spam}
+\includegraphics[width=0.75\textwidth]{spam}
 
 It's why I can search my photos, by photos.
 
+\begin{figure}[h]
+\includegraphics[width=0.75\textwidth]{photo-search}
+\end{figure}
+
+
 In this learning group we are going to learn a bit about \textit{Supervised Learning} in particular. If you're inspired to explore further, the Stanford Machine Learning \href{https://www.coursera.org/learn/machine-learning}{Stanford Machine Learning course} course on Coursera is a good place to start (indeed, you'll see that I took examples from it for the notes here when explaining regression and gradient descent). \href{https://medium.com/machine-learning-for-humans/why-machine-learning-matters-6164faf1df12}{Machine Learning for Humans} is also good.
 
-\includegraphics[width=\textwidth]{photo-search}
 
 \subsubsection{What is Machine Learning?}
 
@@ -33,18 +38,43 @@ Machine learning algorithms can learn to do a particular task without being expl
 
 \subsubsection{What is an algorithm?}
 
-An algorithm is often described as a set of steps to accomplish a particular task. You could describe an algorithm for brushing your teeth, or making a grilled cheese sandwich 
+An algorithm is often described as a set of steps to accomplish a particular task. I prefer to think about algorithms as means to solve computational problems. Computational problems are just well defined inputs and well defined desired outputs.
 
-But it's a bit more general than just a set of steps 
+Here is a computational problem:
 
-\includegraphics[width={\textwidth}]{algo-abstract}
+\textbf{Max of a set}
+
+\textit{Input} A list of integers, unordered
+
+\textit{Output} The largest integer in the list. 
+
+An algorithm is simply a way to transform the input to the output. \\
 
 
-An algorithm is a way to solve a computational problem, and a computational problem just specifies valid input and desired output. 
+Here's an algorithm for \textbf{Max of a set}:\\
 
-When we discuss algorithms, we're also often interested in measuring how accurate they are.
+\begin{algorithm}[H]
+    \SetAlgoLined
+    \KwData{\textit{inputList}, an unordered list }
+    \KwResult{The largest integer in the list }
+    Set $maxValueSoFar$ to the first value in the list \\
+    
+    \For{each item $i$ in \textit{inputList}}{
+    
+    \If{($v > maxValueSoFar$}{
+    	$maxValueSoFar := v$
+    }
+    }
+    \Return $maxValueSoFar$
 
-For example, for the problem of spam filtering the input would be an email message, and the output would be a classification (spam/not spam). The algorithm could be a set of steps. We could compose a series of regular expressions to the message that are based on previous messages that we know have turned out to be spam.
+    \caption{algorithm for \textbf{Max of a set}}
+\end{algorithm}
+
+\includegraphics[width={0.75\textwidth}]{algo-abstract}
+
+\textbf{Max of a set} should return the correct value each time, but for other computational problems we are very interested in measuring how accurate they are. Consider spam filters in real life. A spam filter that blocks 100 spam messages but lets through 1 spam message out of the 10,000 messages that have landed in your inbox is still a pretty good spam filter.
+
+Let's linger a bit more on spam filters. The input would be an email message, and the output would be a classification (spam/not spam). The algorithm could be a set of steps. We could compose a series of regular expressions to the message that are based on previous messages that we know have turned out to be spam.
 
 We could also train a model based on a dataset of emails and classifications, to learn patterns of what spam messages look like without explicitly writing spam identification rules. Then, we could use the model for new data that needs to be classified. That's the approach we're more interested in here, but both approaches are algorithms.
 
@@ -55,7 +85,9 @@ Machine learning algorithms, just like any other algorithms, define some way to 
 The ML Coursera course defines a \textit{Well Posed Machine Learning Problem}
 
 A computer program is said to learn from experience $E$ with respect to some task $T$ and some performance measure $P$ 
-if its performance on $T$, as measured by $P$ improves with experience $E$
+if its performance on $T$, as measured by $P$ improves with experience $E$.
+
+The important thing to note is that we are dealing with a machine learning algorithm if having more data to train our model improves our performance.
 
 So, we can see that the rule based spam filtering approach wouldn't be a machine learning based approach because having more labelled data would not help us to classify spam any more accurately.
 
@@ -93,11 +125,11 @@ Here is an example of an unsupervised learning problem:
 
 \includegraphics[width={\textwidth}]{google-news}
 
-News aggregators don't have a predefined list of topics, but will find an underlying structure in news articles to be able to group them together, as seen above. 
+News aggregators will be able to cluster together news stories about the same topic even though that topic has not been seen before. No one has sat down and defined a \"Theresa May's second meaningful vote topic\", but a clustering algorithm will be able to find an underlying structure in news articles to be able to group them together, as seen above. 
 
 Here is another example of an unsupervised learning problem:
 
-\includegraphics[width={\textwidth}]{cocktail-party}
+\includegraphics[width={0.75\textwidth}]{cocktail-party}
 
 Given fixed mics in a room, and conversations happening around them, the mics will collect audio data for all of the conversations mixed together. If you want to be able to follow one of the conversations, an algorithm that identifies the underlying structure to be able to extract just the parts of the audio that belong to one conversation is an unsupervised learning problem.
 
@@ -128,7 +160,7 @@ Id & LotArea & SellingPrice  \\ \hline
 \end{table}%
 
 %todo justify this
-Let's plot lot area vs selling price for the whole dataset.
+Let's plot lot area vs selling price for the training dataset.
 
 \includegraphics[width={\textwidth}]{ames-training-set}
 
