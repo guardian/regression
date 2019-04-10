@@ -1,6 +1,7 @@
 package util
 
-import breeze.linalg.{DenseMatrix, DenseVector}
+import breeze.linalg.{DenseMatrix, DenseVector, sum}
+import breeze.numerics.abs
 import model.SimplePoint
 
 
@@ -29,21 +30,26 @@ object LinearErrorCalculator {
 
 object VectorisedErrorCalculator {
 
-  def linearMeanSquaredError(data: DenseMatrix[Double], y: DenseVector[Double], theta: DenseVector[Double]) = {
+  def h(theta: DenseVector[Double], data: DenseMatrix[Double]): DenseMatrix[Double] = theta.toDenseMatrix * data
 
-    val thetaT = theta.toDenseMatrix.t
-    val yT = y.toDenseMatrix.t
-    theta.toDenseMatrix * data - y.t
+  def linearMeanSquaredError(data: DenseMatrix[Double], y: DenseVector[Double], theta: DenseVector[Double]): Double = {
+
+    val differences: DenseVector[Double] = (h(theta, data) - y.t).toDenseVector
+    val differencesSquared = differences *:* differences
+
+    val summed = sum(differencesSquared)
+
+    summed / (data.cols.toDouble * 2)
 
   }
 
-  def linearMeanAbsoluteError(data: List[SimplePoint], theta0: Double, theta1: Double): Double = {
-    def h(x: Double) = theta1 * x + theta0
-    def errorForAPoint(point: SimplePoint) = Math.abs(h(point.x) - point.y)
+  def linearMeanAbsoluteError(data: DenseMatrix[Double], y: DenseVector[Double], theta: DenseVector[Double]): Double = {
 
-    val summedErrors = data.foldLeft(0.0)((sum, point) => sum + errorForAPoint(point))
+    val errorForAPoint = abs(h(theta, data) - y.t)
 
-    val numberOfDataPointsDivisor: Double = 1/data.length.toDouble
+    val summedErrors = sum(errorForAPoint)
+
+    val numberOfDataPointsDivisor: Double = 1/data.cols.toDouble
     summedErrors * numberOfDataPointsDivisor
   }
 }

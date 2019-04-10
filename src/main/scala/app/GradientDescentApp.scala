@@ -21,7 +21,6 @@ object GradientDescentApp {
 
     //run gradient descent
     val learnedParameters: LearnedParameterSet = GradientDescent.gradientDescent(normalisedData, 0, 1, 1, 5000)
-
     //plot the trend of cost vs iteration so we know if gradient descent is working
     displayPlot(Plotter.costItersPlot(learnedParameters.history, None))
     //plot our training data, and the line that we fit with gradient descent

@@ -1,6 +1,6 @@
 package util
 
-import breeze.linalg.DenseMatrix
+import breeze.linalg.{DenseMatrix, DenseVector}
 import model.SimplePoint
 import org.specs2.mutable.Specification
 
@@ -44,7 +44,7 @@ class GradientDescentTest extends Specification{
 
       val theta = DenseMatrix(
         (1.0, 1.0, 1.0)
-      ).t
+      )
 
       val x = DenseMatrix(
         (1.0, 1.0, 1.0),
@@ -54,13 +54,13 @@ class GradientDescentTest extends Specification{
 
       val y = DenseMatrix(
         (0.4, 0.3, 0.4)
-      ).t
+      )
 
       val expected = DenseMatrix(
-        (0.8956666666666666),
-        (0.9173333333333333),
-        (0.913)
-      )
+        (0.8566666666666667),
+        (0.9756666666666667),
+        (0.9056666666666666)
+      ).t
 
 
       val updatedTheta: DenseMatrix[Double] = VectorisedGradientDescent.vectorisedThetaUpdate(xData = x, yData = y, theta = theta, learningRate = 0.1)
