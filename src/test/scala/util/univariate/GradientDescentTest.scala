@@ -1,6 +1,5 @@
-package util
+package util.univariate
 
-import breeze.linalg.{DenseMatrix, DenseVector}
 import model.SimplePoint
 import org.specs2.mutable.Specification
 
@@ -36,36 +35,6 @@ class GradientDescentTest extends Specification{
       val updatedTheta1: Double = GradientDescent.theta1Updated(normalisedData, 1, 1, 0.01)
 
       updatedTheta1 shouldEqual (1.0000905017301038)
-    }
-  }
-
-  "vectorisedThetaUpdate" should {
-    "be updated from the value passed in" in {
-
-      val theta = DenseMatrix(
-        (1.0, 1.0, 1.0)
-      )
-
-      val x = DenseMatrix(
-        (1.0, 1.0, 1.0),
-        (0.2, 0.1, 0.2),
-        (0.9, 0.5, 0.5)
-      )
-
-      val y = DenseMatrix(
-        (0.4, 0.3, 0.4)
-      )
-
-      val expected = DenseMatrix(
-        (0.8566666666666667),
-        (0.9756666666666667),
-        (0.9056666666666666)
-      ).t
-
-
-      val updatedTheta: DenseMatrix[Double] = VectorisedGradientDescent.vectorisedThetaUpdate(xData = x, yData = y, theta = theta, learningRate = 0.1, None)
-
-      updatedTheta shouldEqual (expected) //todo compare with an epsilon
     }
   }
 

@@ -2,9 +2,10 @@ package app
 
 import com.cibo.evilplot._
 import com.cibo.evilplot.plot.aesthetics.DefaultTheme._
-import model.{HeightWeight, House, SimplePoint}
-import util.GradientDescent.LearnedParameterSet
-import util.{CsvReader, FeatureScaler, GradientDescent, Plotter}
+import model.{House, SimplePoint}
+import util.univariate.{FeatureScaler, GradientDescent}
+import util.univariate.GradientDescent.LearnedParameterSet
+import util.{CsvReader, Plotter}
 
 object GradientDescentApp {
 

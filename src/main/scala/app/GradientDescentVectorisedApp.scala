@@ -2,8 +2,8 @@ import breeze.linalg.{DenseMatrix, DenseVector}
 import com.cibo.evilplot._
 import com.cibo.evilplot.plot.aesthetics.DefaultTheme._
 import model.{HeightWeight, House, SimplePoint}
-import util.GradientDescent.LearnedParameterSet
 import util._
+import util.vectorised.{VectorisedFeatureScaler, VectorisedGradientDescent}
 
 object GradientDescentVectorisedApp {
 

@@ -1,6 +1,8 @@
-package util
+package util.vectorised
+
 import breeze.linalg._
-import model.SimplePoint
+import breeze.stats.mean
+
 import org.specs2.mutable.Specification
 
 class MatricesTest extends Specification {
@@ -9,8 +11,8 @@ class MatricesTest extends Specification {
     "make row vectors by default" in {
       val vector = DenseVector(0, 1, 2, 3, 4, 5)
 
-      vector.toDenseMatrix.cols shouldEqual(1)
-      vector.toDenseMatrix.rows shouldEqual(6)
+      vector.toDenseMatrix.cols shouldEqual(6)
+      vector.toDenseMatrix.rows shouldEqual(1)
     }
 
     "work for elementwise addition" in {
@@ -85,10 +87,12 @@ class MatricesTest extends Specification {
         (4.0,5.0)
       )
 
-      val expected = DenseMatrix((9.0, 12.0))
-
       matrix2 * matrix1 must throwAn[IllegalArgumentException]
     }
   }
+
+//  "mean" should {
+//
+//  }
 
 }

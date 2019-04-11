@@ -1,6 +1,5 @@
-package util
+package util.univariate
 
-import breeze.linalg.DenseMatrix
 import model.SimplePoint
 import org.specs2.mutable.Specification
 
@@ -25,23 +24,6 @@ class FeatureScalerTest extends Specification {
       )
 
       val scaled = FeatureScaler.meanNormalisedData(inputData)
-      scaled shouldEqual (expected)
-    }
-  }
-
-  "meanNormalisedData" should {
-    "should also work for the vectorised implementation " in {
-      val inputData: DenseMatrix[Double] = DenseMatrix(
-        (10.0, 15.0, 5.0),
-        (15.0, 10.0, 20.0)
-      )
-
-      val expected: DenseMatrix[Double] = DenseMatrix(
-        (0.0, 0.5, -0.5),
-        (0.0, -0.5, 0.5)
-      )
-
-      val scaled = VectorisedFeatureScaler.meanNormalisedData(inputData)
       scaled shouldEqual (expected)
     }
   }

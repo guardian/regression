@@ -3,8 +3,9 @@ package app
 import com.cibo.evilplot._
 import com.cibo.evilplot.plot.aesthetics.DefaultTheme._
 import model.{HeightWeight, House, SimplePoint}
-import util.GradientDescent.LearnedParameterSet
+import util.univariate.GradientDescent.LearnedParameterSet
 import util._
+import util.univariate.{FeatureScaler, GradientDescent, LinearErrorCalculator}
 
 
 object GradientDescentAndCheckTestSetApp {

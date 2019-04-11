@@ -4,6 +4,7 @@ import breeze.linalg.{DenseMatrix, DenseVector}
 import com.cibo.evilplot._
 import com.cibo.evilplot.plot.aesthetics.DefaultTheme._
 import util._
+import util.vectorised.{VectorisedErrorCalculator, VectorisedFeatureScaler, VectorisedGradientDescent}
 
 object GradientDescentVectorisedAndCheckTestSetApp {
 
