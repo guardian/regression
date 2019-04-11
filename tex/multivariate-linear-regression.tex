@@ -94,7 +94,7 @@ We can also now express our model in terms of matrices. We know that in our hypo
 
 So let's go back to our table of sample data: 
 \begin{table}[htp]
-\caption{Sample from a dataset of heights and weights}
+\caption{Sample from a dataset of houses and selling price}
 \label{table:sample-ames}
 \begin{center}
 \begin{tabular}{|c|c|c|c|c|}
@@ -143,17 +143,28 @@ Let's also define our parameters as a matrix $\theta =
 
 Recall our hypothesis: $h_\theta(x) = \theta_0 + \theta_1x_1+ \theta_2x_2 + ... +  \theta_nx_n$ (we think that a line will fit our data)
 
-If we let  $x^{(i)}$ represent the $i$th training example, $x^{(i)} = $\(\begin{bmatrix}
-x_0^{(i)} \\
-x_1^{(i)} \\
-x_2^{(i)} \\
-x_3^{(i)} \\
-x_4^{(i)} \\
- \end{bmatrix}\)
- 
+With $x$ = \(\begin{bmatrix}
+x_0 \\
+x_1 \\
+x_2 \\
+x_3 \\
+x_4\\
+ \end{bmatrix}\) and  $\theta = 
+\begin{bmatrix}
+\theta_0 \\
+\theta_1 \\
+\theta_2 \\
+\theta_3 \\
+\theta_4\\
+ \end{bmatrix}
+ $
+then \\
+
+$h_\theta(x) = \theta^Tx = \theta_0 + \theta_1x_1+ \theta_2x_2 + ... +  \theta_nx_n$ \\
+
 Then we can express our model as the following:\\
 
-\textbf{Hypothesis}: $h_\theta(x^{(i)}) = \theta^Tx^{(i)}$\\
+\textbf{Hypothesis}: $h_\theta(x) = \theta^Tx$\\
 
 \textbf{Parameters}: $\theta$ (our vector of thetas)\\
 
