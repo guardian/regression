@@ -73,41 +73,38 @@ object GradientDescent {
 }
 
 object VectorisedGradientDescent {
-  def diffPoint(point: SimplePoint, theta0: Double, theta1: Double) = (theta1 * point.x + theta0) - point.y
-
-//  def thetaUpdated(featureData: DenseMatrix[Double], theta: DenseVector[Double], y: DenseVector[Double], learningRate: Double): DenseVector[Double] = {
-//    val h = theta.toDenseMatrix * featureData
-//
-//    val errors = h - y.toDenseMatrix
-//
-//    val divisor = learningRate/featureData.cols.toDouble
-//    val thetaChange: DenseMatrix[Double] = (featureData * errors.t) * divisor
-//
-//    theta - thetaChange
-//  }
 
   case class LearnedParameterSet(theta: DenseVector[Double], history: List[GradientDescentHistoryPoint])
 
-  def vectorisedThetaUpdate(xData: DenseMatrix[Double], yData: DenseMatrix[Double], theta: DenseMatrix[Double], learningRate: Double): DenseMatrix[Double] = {
-    val thetaT = theta.t
+  def vectorisedThetaUpdate(xData: DenseMatrix[Double], yData: DenseMatrix[Double], theta: DenseMatrix[Double], learningRate: Double, lambda: Option[Double]): DenseMatrix[Double] = {
+    val m = xData.rows
+
+    val thetaShrinker = lambda map { reg =>
+      1.0 - ((learningRate * reg)/m)
+    }
+
     val hy = theta * xData
 
-    val errs = (hy - yData)
+    val predictionDifferenceTimesX = (xData * (hy - yData).t).t
 
-    val predictionDifferenceTimesX = (xData *(hy - yData).t).t
+    val multiplier = (learningRate / xData.rows.toDouble)
+    val adjustment = predictionDifferenceTimesX *:* multiplier
 
-    val multiplier = (learningRate/xData.rows.toDouble)
-    val adjustment =  predictionDifferenceTimesX *:* multiplier
+    val thetaToAdjust = thetaShrinker match {
+      case Some(scalar) => theta *:* scalar
+      case None => theta
+    }
 
-    theta :-= adjustment
+    thetaToAdjust :-= adjustment
   }
 
   def gradientDescent(
-    xData: DenseMatrix[Double],
-    yData: DenseVector[Double],
-    theta: DenseVector[Double],
-    learningRate: Double,
-    iters: Int): LearnedParameterSet = {
+                       xData: DenseMatrix[Double],
+                       yData: DenseVector[Double],
+                       theta: DenseVector[Double],
+                       learningRate: Double,
+                       iters: Int,
+                       lambda: Option[Double]): LearnedParameterSet = {
 
     var cost = VectorisedErrorCalculator.linearMeanAbsoluteError(xData, yData, theta)
     var gradientDescentHistory = new ListBuffer[GradientDescentHistoryPoint]
@@ -117,17 +114,12 @@ object VectorisedGradientDescent {
     var counter = 0
     var thetas = theta
 
-    while(counter < iters && cost > 0.001) {
+    while (counter < iters && cost > 0.001) {
 
       println(s"old thetas ${thetas.toString()}")
 
-      val tempThetas: DenseMatrix[Double] = vectorisedThetaUpdate(xData, yData.toDenseMatrix, thetas.toDenseMatrix, learningRate)
+      val tempThetas: DenseMatrix[Double] = vectorisedThetaUpdate(xData, yData.toDenseMatrix, thetas.toDenseMatrix, learningRate, lambda)
       println(s"Theta updates ${tempThetas.toString()}")
-
-//      val updatedThetas = thetas - tempThetas.toDenseVector
-//      println(s"new updated Theta  ${updatedThetas.toString()}")
-
-//      thetas = thetas - tempThetas.toDenseVector
 
       thetas = tempThetas.toDenseVector
       cost = VectorisedErrorCalculator.linearMeanAbsoluteError(xData, yData, thetas)
@@ -141,42 +133,5 @@ object VectorisedGradientDescent {
     }
 
     LearnedParameterSet(thetas, gradientDescentHistory.toList)
-  }
-
-
-  import breeze.linalg.DenseMatrix.horzcat
-  import breeze.linalg._
-
-  import scala.annotation.tailrec
-
-  type History = DenseMatrix[Double]
-  type Theta = DenseMatrix[Double]
-
-  def computeCost(X: DenseMatrix[Double], y: DenseMatrix[Double], theta: Theta): Double = {
-    val m = y.rows
-    sum((X * theta - y) :^ 2d) / (2 * m)
-  }
-
-  def gradientDescentRecursive(X: DenseMatrix[Double], y: DenseMatrix[Double],
-                      theta: Theta, alpha: Double, numberItr: Int): LearnedParameterSet = {
-    val m = y.rows
-
-    @tailrec
-    def descend(newTheta: DenseMatrix[Double], history: DenseMatrix[Double],
-                decentRemaining: Int):
-    LearnedParameterSet  = {
-      decentRemaining match { //ls.zipWithIndex.foreach{ case (e, i) => println(i+" "+e) }
-        case 0 => LearnedParameterSet(newTheta.toDenseVector, history.toArray.zipWithIndex.map{case (e, i) => GradientDescentHistoryPoint(i, e)}.toList)
-        case _ =>
-          val htheta = X * newTheta
-          val theta0 = newTheta(0,0) - alpha / m * sum((htheta - y) :* X(::, 0).t)
-          val theta1 = newTheta(1,0) - alpha / m * sum((htheta - y) :* X(::, 1).t)
-          val cost = computeCost(X, y, DenseMatrix(theta0, theta1))
-          descend(DenseMatrix(theta0, theta1),
-            horzcat(DenseMatrix(cost), history), decentRemaining - 1)
-      }
-    }
-
-    descend(theta, DenseMatrix(computeCost(X, y, theta)), numberItr)
   }
 }

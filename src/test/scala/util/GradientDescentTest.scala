@@ -63,7 +63,7 @@ class GradientDescentTest extends Specification{
       ).t
 
 
-      val updatedTheta: DenseMatrix[Double] = VectorisedGradientDescent.vectorisedThetaUpdate(xData = x, yData = y, theta = theta, learningRate = 0.1)
+      val updatedTheta: DenseMatrix[Double] = VectorisedGradientDescent.vectorisedThetaUpdate(xData = x, yData = y, theta = theta, learningRate = 0.1, None)
 
       updatedTheta shouldEqual (expected) //todo compare with an epsilon
     }

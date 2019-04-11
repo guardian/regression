@@ -11,8 +11,6 @@ object GradientDescentVectorisedApp {
 
     val detailedHouseData: DenseMatrix[Double] = CsvReader.asDenseMatrix("house-prices-train-detailed.csv", true)
 
-//    val featureMatrixX: DenseMatrix[Double] = detailedHouseData(::, 1).toDenseMatrix
-//    val Y: DenseMatrix[Double] = detailedHouseData(::, 2).toDenseMatrix
     val featureMatrixX: DenseMatrix[Double] = detailedHouseData(::, 0 to 5).t
     val y: DenseVector[Double] = detailedHouseData(::, 6)
 
@@ -27,20 +25,11 @@ object GradientDescentVectorisedApp {
 
     //new thetas 0 DenseVector(179428.50730805576, 6733.298825663688)
     //run gradient descent
-    val learnedParameters = VectorisedGradientDescent.gradientDescent(normalisedDataWithZeroFeature, y.toDenseVector, theta, 0.0001, 3000)
+    val learnedParameters = VectorisedGradientDescent.gradientDescent(normalisedDataWithZeroFeature, y.toDenseVector, theta, 0.0001, 3000, None)
 
     //plot the trend of cost vs iteration so we know if gradient descent is working
     displayPlot(Plotter.costItersPlot(learnedParameters.history, None))
-    //plot our training data, and the line that we fit with gradient descent
-//    displayPlot(Plotter.scatterPlotWithFittedLine(
-//      data = normalisedData,
-//      theta0 = learnedParameters.theta0,
-//      theta1 = learnedParameters.theta1,
-//      title = None,
-//      xLabel = "Lot size",
-//      yLabel = "Selling price"
-//    )
-//    )
+
   }
 
 
