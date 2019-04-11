@@ -57,34 +57,4 @@ class LinearErrorCalculatorTest extends Specification {
     }
   }
 
-  "linear mean absolute error" should {
-    "sum up absolute errors" in {
-      val data = List(
-        SimplePoint(174.0,96.0),
-        SimplePoint(189.0,87.0)
-      )
-
-      val meanAbsoluteError: Double = LinearErrorCalculator.linearMeanAbsoluteError(data, 1, 1)
-
-      meanAbsoluteError shouldEqual(91.0)
-    }
-
-    "also work for the vectorised model" in {
-
-      val data: DenseMatrix[Double] = DenseMatrix(
-        (1.0, 1.0, 1.0),
-        (174.0,96.0, 112.0)
-      )
-
-      val y = DenseVector(122.0, 125.0, 123.0)
-
-      val theta = DenseVector(1.0, 1.0)
-
-      val meanAbsoluteError: Double = VectorisedErrorCalculator.linearMeanAbsoluteError(data, y, theta)
-
-
-      meanAbsoluteError must beCloseTo(30.333, 0.001)
-    }
-  }
-
 }

@@ -43,11 +43,11 @@ object GradientDescentVectorisedAndCheckTestSetApp {
     val normalisedTestDataWithZeroFeature = DenseMatrix.vertcat(featureZeroTest, normalisedTestData)
 
     //just print out the mean absolute error for the line we fit when we compare to the test set
-    val meanAbsoluteError = VectorisedErrorCalculator.linearMeanAbsoluteError(normalisedTestDataWithZeroFeature, testY, learnedParameters.theta)
-    val meanAbsoluteErrorTrain = VectorisedErrorCalculator.linearMeanAbsoluteError(normalisedDataWithZeroFeature, y, learnedParameters.theta)
+    val meanSquaredError = VectorisedErrorCalculator.linearMeanSquaredError(normalisedTestDataWithZeroFeature, testY, learnedParameters.theta)
+    val meanSquaredErrorTrain = VectorisedErrorCalculator.linearMeanSquaredError(normalisedDataWithZeroFeature, y, learnedParameters.theta)
 
-    println(s"Hello, world! This is the absolute error for the test set: $meanAbsoluteError")
-    println(s"Hello, world! This is the absolute error for the training set: $meanAbsoluteErrorTrain")
+    println(s"Hello, world! This is the mean squared error for the test set: $meanSquaredError")
+    println(s"Hello, world! This is the mean squared error for the training set: $meanSquaredErrorTrain")
   }
 
 

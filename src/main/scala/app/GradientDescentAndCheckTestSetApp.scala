@@ -51,8 +51,8 @@ object GradientDescentAndCheckTestSetApp {
     )
     )
     //just print out the mean absolute error for the line we fit when we compare to the test set
-    val meanAbsoluteError = LinearErrorCalculator.linearMeanAbsoluteError(normalisedData, learnedParameters.theta0, learnedParameters.theta1)
-    println(s"Hello, world! This is the absolute error: $meanAbsoluteError")
+    val meanSquaredError = LinearErrorCalculator.linearMeanSquaredError(normalisedData, learnedParameters.theta0, learnedParameters.theta1)
+    println(s"Hello, world! This is the mean squared error: $meanSquaredError")
   }
 
 }

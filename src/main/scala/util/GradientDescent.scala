@@ -106,7 +106,7 @@ object VectorisedGradientDescent {
                        iters: Int,
                        lambda: Option[Double]): LearnedParameterSet = {
 
-    var cost = VectorisedErrorCalculator.linearMeanAbsoluteError(xData, yData, theta)
+    var cost = VectorisedErrorCalculator.linearMeanSquaredError(xData, yData, theta)
     var gradientDescentHistory = new ListBuffer[GradientDescentHistoryPoint]
 
     println(s"starting cost ${cost}")
@@ -122,7 +122,7 @@ object VectorisedGradientDescent {
       println(s"Theta updates ${tempThetas.toString()}")
 
       thetas = tempThetas.toDenseVector
-      cost = VectorisedErrorCalculator.linearMeanAbsoluteError(xData, yData, thetas)
+      cost = VectorisedErrorCalculator.linearMeanSquaredError(xData, yData, thetas)
       println(s"new cost ${cost}")
       println(s"new thetas 0 ${thetas.toString()}")
       println(s"we are on iter ${counter}")
