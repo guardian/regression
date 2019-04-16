@@ -9,20 +9,18 @@ object FeatureScaler {
 
   def meanNormalisedData(data: List[SimplePoint]): List[SimplePoint] = {
 
-    def scaled(min: Double, max: Double, avg: Double, dataPoint: Double): Double = {
-      val range = max - min
-      (dataPoint - avg) / range
-    }
-
-    val xList = data.map(_.x)
-
+    def scaled(range: Double, avg: Double, dataPoint: Double): Double = (dataPoint - avg) / range
+    
+    val xList: List[Double] = data.map(_.x)
+    
     val minX = xList.min
     val maxX = xList.max
+    val range = maxX - minX
     val xAvg = avg(xList)
 
     data.map { point =>
       SimplePoint(
-        scaled(minX, maxX, xAvg, point.x),
+        scaled(range, xAvg, point.x),
         point.y
       )
     }
