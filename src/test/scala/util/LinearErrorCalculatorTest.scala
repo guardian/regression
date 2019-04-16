@@ -19,17 +19,4 @@ class LinearErrorCalculatorTest extends Specification {
     }
 
   }
-
-  "linear mean absolute error" should {
-    "sum up absolute errors" in {
-      val data = List(
-        SimplePoint(174.0,96.0),
-        SimplePoint(189.0,87.0)
-      )
-
-      val meanAbsoluteError: Double = LinearErrorCalculator.linearMeanAbsoluteError(data, 1, 1)
-
-      meanAbsoluteError shouldEqual(91.0)
-    }
-  }
 }
