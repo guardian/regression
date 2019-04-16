@@ -51,7 +51,7 @@ notes: https://github.com/guardian/regression/blob/master/tex/week2.pdf
 
 We covered the content for gradient descent (described in week2.pdf) so most of this session will be completing our implementation of gradient descent. 
 
-- Implement `linearMeanAbsoluteError` in `LinearErrorCalculator` (note: there is already a `LinearErrorCalculatorTest`)
+- Implement `meanNormalisedData` in `FeatureScaler`
 - Implement `theta0Updated` and `theta1Updated` in `GradientDescent` (note: there is already a `GradientDescentTest`)
 - With the help of `GradientDescentApp`, implement the `gradientDescent` function in the `GradientDescent` object. `GradientDescentApp` loads the house prices training data, calls the `gradientDescent` function, and then launches of plot of cost vs number of iterations. You'll know you're on the right track when cost decreases with every iteration (see: the cost vs iterations plot in the week 2 notes for a graph that shows gradient descent has converged). 
 - `GradientDescentAndCheckTestSetApp` will do the same as `GradientDescentApp` and additionally load in the test set, and calulate the Mean Absolute Error
