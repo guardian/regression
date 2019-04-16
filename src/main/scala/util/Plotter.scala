@@ -5,7 +5,8 @@ import com.cibo.evilplot.geometry.Drawable
 import com.cibo.evilplot.numeric.{Bounds, Point}
 import com.cibo.evilplot.plot.aesthetics.DefaultTheme._
 import com.cibo.evilplot.plot.{FunctionPlot, Overlay, ScatterPlot, _}
-import model.{GradientDescentHistoryPoint, HeightWeight, SimplePoint}
+import model.univariate.SimplePoint
+import model.{GradientDescentHistoryPoint, HeightWeight}
 
 object Plotter {
 

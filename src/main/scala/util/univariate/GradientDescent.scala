@@ -1,11 +1,7 @@
-package util
+package util.univariate
 
-import com.cibo.evilplot.displayPlot
-
-import scala.collection.mutable.ListBuffer
-import com.cibo.evilplot.plot.aesthetics.DefaultTheme._
-import model.{GradientDescentHistoryPoint, SimplePoint}
-
+import model.GradientDescentHistoryPoint
+import model.univariate.SimplePoint
 
 object GradientDescent {
 

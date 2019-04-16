@@ -1,6 +1,6 @@
-package util
+package util.univariate
 
-import model.SimplePoint
+import model.univariate.SimplePoint
 import org.specs2.mutable.Specification
 
 class LinearErrorCalculatorTest extends Specification {

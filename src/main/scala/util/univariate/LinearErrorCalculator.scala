@@ -1,7 +1,6 @@
-package util
+package util.univariate
 
-import model.SimplePoint
-
+import model.univariate.SimplePoint
 
 object LinearErrorCalculator {
 

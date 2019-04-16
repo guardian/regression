@@ -1,11 +1,12 @@
-package app
+package app.univariate
 
-import com.cibo.evilplot._
+import com.cibo.evilplot.displayPlot
 import com.cibo.evilplot.plot.aesthetics.DefaultTheme._
-import model.{HeightWeight, House, SimplePoint}
-import util.GradientDescent.LearnedParameterSet
+import model.House
+import model.univariate.SimplePoint
+import util.univariate.GradientDescent.LearnedParameterSet
 import util._
-
+import util.univariate.{FeatureScaler, GradientDescent, LinearErrorCalculator}
 
 object GradientDescentAndCheckTestSetApp {
 

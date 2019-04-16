@@ -1,9 +1,6 @@
-package util
+package util.univariate
 
-import model.SimplePoint
-
-import scala.annotation.tailrec
-
+import model.univariate.SimplePoint
 
 object FeatureScaler {
 
