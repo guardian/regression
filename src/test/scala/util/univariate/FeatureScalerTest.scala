@@ -28,30 +28,6 @@ class FeatureScalerTest extends Specification {
     }
   }
 
-  //todo: not sure if this is needed
-//  "minMaxScaledData" should {
-//    "scale the data" in {
-//      val inputData = List(
-//        SimplePoint(78, 90),
-//        SimplePoint(55, 50),
-//        SimplePoint(54, 56),
-//        SimplePoint(77, 85),
-//        SimplePoint(88, 90)
-//      )
-//
-//      val expected = List(
-//        SimplePoint(0.7368421052631579,1.0),
-//        SimplePoint(0.13157894736842105,0.0),
-//        SimplePoint(0.10526315789473684,0.15),
-//        SimplePoint(0.7105263157894737,0.875),
-//        SimplePoint(1.0,1.0)
-//      )
-//
-//      val scaled = FeatureScaler.minMaxScaledData(inputData)
-//      scaled shouldEqual(expected)
-//    }
-//  }
-
   "avg" should {
     "give the average of a list of values" in {
       val inputValues = List(78.0, 55.0, 54.0, 77.0, 88.0)
