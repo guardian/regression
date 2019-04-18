@@ -52,16 +52,17 @@ notes: https://github.com/guardian/regression/blob/master/tex/week2.pdf
 We covered the content for gradient descent (described in week2.pdf) so most of this session will be completing our implementation of gradient descent. 
 
 - Implement `meanNormalisedData` in `FeatureScaler`
+
+### Week 4: Gradient Descent part 3
 - Implement `theta0Updated` and `theta1Updated` in `GradientDescent` (note: there is already a `GradientDescentTest`)
 - With the help of `GradientDescentApp`, implement the `gradientDescent` function in the `GradientDescent` object. `GradientDescentApp` loads the house prices training data, calls the `gradientDescent` function, and then launches of plot of cost vs number of iterations. You'll know you're on the right track when cost decreases with every iteration (see: the cost vs iterations plot in the week 2 notes for a graph that shows gradient descent has converged). 
-- `GradientDescentAndCheckTestSetApp` will do the same as `GradientDescentApp` and additionally load in the test set, and calulate the Mean Absolute Error
+- `GradientDescentAndCheckTestSetApp` will do the same as `GradientDescentApp` and additionally load in the test set, and calulate the Mean Squared Error
 
 bonus points:
 
 - Start thinking about how you could improve your model. I started with the Ames dataset: https://www.kaggle.com/c/house-prices-advanced-regression-techniques and just extracted lot size and selling price. Does Mean Absolute Error improve if you pick a feature that might be a better predictor of selling price? Then you can also feel some data munging pain that is a very authentic experience. :D
 
-### Week 4: Linear algebra review + vectorising your gradient descent implementation
+### Week 5: Linear algebra review + vectorising your gradient descent implementation
 
-### Week 5: Logistic regression + applying it to the Titanic dataset
+### Week 6: Logistic regression + applying it to the Titanic dataset
 
-### Week 6: Finishing up the previous topics, perhaps? 
