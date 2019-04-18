@@ -26,7 +26,7 @@ Ongoing news at the Learning Group(s) channel.
 
 Rough outline:
 
-### Week 1: Introduction and linear regression
+### Session 1: Introduction and linear regression
 
 exercises: https://github.com/guardian/regression/blob/master/notes/week1-written.pdf
 
@@ -37,7 +37,7 @@ Machine learning course on coursera: https://www.coursera.org/learn/machine-lear
 
 Machine learning for humans: https://medium.com/machine-learning-for-humans/why-machine-learning-matters-6164faf1df12
 
-### Week 2: Gradient Descent part 1
+### Session 2: Gradient Descent part 1
 
 notes: https://github.com/guardian/regression/blob/master/tex/week2.pdf
 
@@ -46,14 +46,14 @@ exercises:
 
 This week we covered gradient descent and completed the first coding exercise (above)
 
-### Week 3: Gradient Descent part 2 
+### Session 3: Gradient Descent part 2 
 notes: https://github.com/guardian/regression/blob/master/tex/week2.pdf
 
 We covered the content for gradient descent (described in week2.pdf) so most of this session will be completing our implementation of gradient descent. 
 
 - Implement `meanNormalisedData` in `FeatureScaler`
 
-### Week 4: Gradient Descent part 3
+### Session 4: Gradient Descent part 3
 - Implement `theta0Updated` and `theta1Updated` in `GradientDescent` (note: there is already a `GradientDescentTest`)
 - With the help of `GradientDescentApp`, implement the `gradientDescent` function in the `GradientDescent` object. `GradientDescentApp` loads the house prices training data, calls the `gradientDescent` function, and then launches of plot of cost vs number of iterations. You'll know you're on the right track when cost decreases with every iteration (see: the cost vs iterations plot in the week 2 notes for a graph that shows gradient descent has converged). 
 - `GradientDescentAndCheckTestSetApp` will do the same as `GradientDescentApp` and additionally load in the test set, and calulate the Mean Squared Error
@@ -62,7 +62,22 @@ bonus points:
 
 - Start thinking about how you could improve your model. I started with the Ames dataset: https://www.kaggle.com/c/house-prices-advanced-regression-techniques and just extracted lot size and selling price. Does Mean Absolute Error improve if you pick a feature that might be a better predictor of selling price? Then you can also feel some data munging pain that is a very authentic experience. :D
 
-### Week 5: Linear algebra review + vectorising your gradient descent implementation
+### Session 5: Matrix operations with Alex
 
-### Week 6: Logistic regression + applying it to the Titanic dataset
+We will need some familiarity with matrices before we can use multiple features in our linear regression model. This session is all about introducing matrices and the operations we'll need. If you're already familiar with matrices, you might be able to skip this session. If you can easily complete the following exercises without revising, you can skip this session and rejoin us for session 6.
+
+https://github.com/guardian/regression/blob/master/notes/do-i-need-matrix-review.pdf
+
+check your work here:
+https://github.com/guardian/regression/blob/master/notes/do-i-need-matrix-review-ANS.pdf
+
+If you miss this session, there are some nice Khan academy tutorials available that cover the concepts we need, including interactive exercises. There are links in the multivariate linear regression notes: https://github.com/guardian/regression/blob/master/tex/multivariate-linear-regression.pdf
+
+Make sure to try the Khan academy exercises if you miss the session.
+
+Links to material from Alex's session to follow. 
+
+### Session 6: Linear algebra review + vectorising your gradient descent implementation
+
+### Session 7: Logistic regression + applying it to the Titanic dataset
 
