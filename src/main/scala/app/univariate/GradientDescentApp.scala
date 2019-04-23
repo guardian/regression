@@ -23,8 +23,14 @@ object GradientDescentApp {
     val normalisedData = FeatureScaler.meanNormalisedData(data)
 
     //run gradient descent
+<<<<<<< Updated upstream:src/main/scala/app/univariate/GradientDescentApp.scala
     val learnedParameters: LearnedParameterSet = GradientDescent.gradientDescent(normalisedData, 0, 1, 1, 5000)
 
+||||||| merged common ancestors:src/main/scala/app/GradientDescentApp.scala
+    val learnedParameters: LearnedParameterSet = GradientDescent.gradientDescent(normalisedData, 0, 1, 1, 5000)
+=======
+    val learnedParameters: LearnedParameterSet = GradientDescent.gradientDescent(normalisedData, 0, 1, 0.001, 10000)
+>>>>>>> Stashed changes:src/main/scala/app/GradientDescentApp.scala
     //plot the trend of cost vs iteration so we know if gradient descent is working
     displayPlot(Plotter.costItersPlot(learnedParameters.history, None))
     //plot our training data, and the line that we fit with gradient descent
