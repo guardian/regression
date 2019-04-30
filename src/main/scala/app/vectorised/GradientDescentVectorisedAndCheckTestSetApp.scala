@@ -1,10 +1,9 @@
-package app
+package app.vectorised
 
 import breeze.linalg.{DenseMatrix, DenseVector}
-import com.cibo.evilplot._
-import com.cibo.evilplot.plot.aesthetics.DefaultTheme._
-import util._
+import com.cibo.evilplot.displayPlot
 import util.vectorised.{VectorisedErrorCalculator, VectorisedFeatureScaler, VectorisedGradientDescent}
+import util.{CsvReader, Plotter}
 
 object GradientDescentVectorisedAndCheckTestSetApp {
 
