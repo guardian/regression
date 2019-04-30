@@ -75,7 +75,7 @@ If you miss this session, there are some nice Khan academy tutorials available t
 
 Make sure to try the Khan academy exercises if you miss the session.
 
-Links to material from Alex's session to follow. 
+Video from this session: https://drive.google.com/a/guardian.co.uk/file/d/1Izvr5mtzxF9vCJN4zW_2pO66feiq1Fbi/view?usp=sharing
 
 ### Session 6: Linear algebra review + vectorising your gradient descent implementation
 
