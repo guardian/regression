@@ -3,11 +3,10 @@ package app.univariate
 import com.cibo.evilplot.displayPlot
 import model.House
 import model.univariate.SimplePoint
+import com.cibo.evilplot.plot.aesthetics.DefaultTheme._
 import util.univariate.{FeatureScaler, GradientDescent}
 import util.univariate.GradientDescent.LearnedParameterSet
 import util.{CsvReader, Plotter}
-import com.cibo.evilplot.plot.aesthetics.DefaultTheme._
-
 
 object GradientDescentApp {
 

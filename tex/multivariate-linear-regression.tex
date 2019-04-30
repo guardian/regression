@@ -181,7 +181,7 @@ We also need to update our algorithm for gradient descent:
     
     \While{we have not reached convergence}{
     	\For{each $j$ in range 0 up to $n$}{
-   	 \[\theta_j := \theta_j - \alpha \frac{1}{m} \sum^m_{i=1} (h_\theta(x^{(i)}) - y^{(i)}) \times x^{(i)}\]
+   	 \[\theta_j := \theta_j - \alpha \frac{1}{m} \sum^m_{i=1} (h_\theta(x^{(i)}) - y^{(i)}) \times x^{(i)}_j\]
 	 }
 	}
 	

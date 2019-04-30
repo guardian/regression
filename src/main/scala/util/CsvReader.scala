@@ -2,6 +2,8 @@ package util
 
 import java.io._
 
+import breeze.linalg._
+
 import scala.io.Source
 
 /**
@@ -42,6 +44,17 @@ object CsvReader {
     horribleMutableList.toList
   }
 
+  /*
+    Warning: only reads doubles!
+   */
+  def asDenseMatrix(csvFile: String, hasHeader: Boolean): DenseMatrix[Double]= {
+
+    val files = getListOfFiles("data")
+    val file = files.find(file => file.getName == csvFile).getOrElse(throw new FileNotFoundException(s"couldn't find $csvFile"))
+    val skipHeaderLine = if(hasHeader) 1 else 0
+
+    csvread(file, ',', skipLines = skipHeaderLine)
+  }
 }
 
 object CSVWriter {

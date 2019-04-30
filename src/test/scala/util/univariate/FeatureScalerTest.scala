@@ -28,7 +28,6 @@ class FeatureScalerTest extends Specification {
     }
   }
 
-
   "avg" should {
     "give the average of a list of values" in {
       val inputValues = List(78.0, 55.0, 54.0, 77.0, 88.0)
