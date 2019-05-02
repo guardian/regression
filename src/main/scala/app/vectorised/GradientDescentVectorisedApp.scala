@@ -4,6 +4,8 @@ import breeze.linalg.{DenseMatrix, DenseVector}
 import com.cibo.evilplot.displayPlot
 import util.vectorised.{VectorisedFeatureScaler, VectorisedGradientDescent}
 import util.{CsvReader, Plotter}
+import com.cibo.evilplot.plot.aesthetics.DefaultTheme._
+
 
 object GradientDescentVectorisedApp {
 
