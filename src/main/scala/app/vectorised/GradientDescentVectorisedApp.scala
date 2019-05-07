@@ -13,7 +13,7 @@ object GradientDescentVectorisedApp {
 
     val detailedHouseData: DenseMatrix[Double] = CsvReader.asDenseMatrix("house-prices-train-detailed.csv", true)
 
-    val featureMatrixX: DenseMatrix[Double] = detailedHouseData(::, 0 to 5).t
+    val featureMatrixX: DenseMatrix[Double] = detailedHouseData(::, 1 to 5).t
     val y: DenseVector[Double] = detailedHouseData(::, 6)
 
     //load in the training data

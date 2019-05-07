@@ -1,4 +1,4 @@
-Id,LotArea,NumberOfBedrooms,NumberOfKitchens,SquareFeet,SalePrice
+Id,LotArea,NumberOfBedrooms,NumberOfBathrooms,NumberOfKitchens,SquareFeet,SalePrice
 9,6120.0,2,2,0,1774.0,129900.0
 223,11475.0,3,2,1,1552.0,179900.0
 740,9313.0,3,2,1,1728.0,190000.0

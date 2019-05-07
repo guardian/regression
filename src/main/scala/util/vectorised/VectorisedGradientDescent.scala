@@ -10,7 +10,7 @@ object VectorisedGradientDescent {
   case class LearnedParameterSet(theta: DenseVector[Double], history: List[GradientDescentHistoryPoint])
 
   def vectorisedThetaUpdate(xData: DenseMatrix[Double], yData: DenseMatrix[Double], theta: DenseMatrix[Double], learningRate: Double, lambda: Option[Double]): DenseMatrix[Double] = {
-    val m = xData.rows
+    val m = xData.cols
 
     val thetaShrinker = lambda map { reg =>
       1.0 - ((learningRate * reg)/m)
