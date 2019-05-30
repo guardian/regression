@@ -1,5 +1,6 @@
 package util
 
+import app.DeCategoriserApp
 import breeze.linalg.DenseMatrix
 import model.{HeightWeight, House, Passenger}
 import org.specs2.mutable.Specification
@@ -37,10 +38,10 @@ class CsvReaderTest extends Specification {
       def transformer(strings: Array[String]) = House(strings(0), strings(1).toDouble, strings(2).toDouble)
 
       val expected = List(
-//        Passenger(1.0, 0.0, 3.0, 0.0, 22.0, 1.0, 1.0, )
+        Passenger(1.0, 0.0, 3.0, 0.0, 22.0, 1.0, 1.0,3.0 )
       )
 
-      val housePrices = CsvReader.asCaseClassList("house-prices-sample.csv", true, transformer)
+      val housePrices = CsvReader.asCaseClassList("titanic-train-sample.csv", true, DeCategoriserApp.transformer)
       housePrices.take(9) shouldEqual(expected)
     }
   }

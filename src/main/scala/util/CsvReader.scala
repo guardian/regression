@@ -35,7 +35,8 @@ object CsvReader {
     var horribleMutableList = new ListBuffer[T]()
 
     for (line <- iterator) {
-      val cols: Array[String] = line.split(",").map(_.trim)
+      val cols: Array[String] = line.split(",(?=([^\\\"]*\\\"[^\\\"]*\\\")*[^\\\"]*$)").map(_.trim)
+//      val cols: Array[String] = line.split(",").map(_.trim)
       val newItem = transformer(cols)
       horribleMutableList += newItem
     }

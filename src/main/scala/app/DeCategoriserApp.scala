@@ -6,7 +6,7 @@ import util.{CSVWriter, CsvReader}
 object DeCategoriserApp {
 
   //case class Passenger(id: Double, survived: Double, ticketClass: Double, sex: String, age: Double, siblingsAboard: Double, parentsAboard: Double, embarkPort: String)
-  def transformer(strings: Array[String]) = Passenger(
+  def transformer(strings: Array[String]): Passenger = Passenger(
     id = strings(0).toDouble,
     survived = strings(1).toDouble,
     ticketClass = strings(2).toDouble,
