@@ -77,7 +77,27 @@ Make sure to try the Khan academy exercises if you miss the session.
 
 Video from this session: https://drive.google.com/a/guardian.co.uk/file/d/1Izvr5mtzxF9vCJN4zW_2pO66feiq1Fbi/view?usp=sharing
 
-### Session 6: Linear algebra review + vectorising your gradient descent implementation
+### Session 6: Vectorising your gradient descent implementation part 1
 
-### Session 7: Logistic regression + applying it to the Titanic dataset
+We walked through how our linear regression model changes when we wish to use multiple features in the model.
+
+Notes here: https://github.com/guardian/regression/blob/master/tex/multivariate-linear-regression.pdf
+
+Exercises: either implementing the function `linearMeanSquaredError` in `VectorisedErrorCalculator` or `meanNormalisedData` in `VectorisedFeatureScaler`
+
+### Session 7: Vectorising your gradient descent implementation part 2
+
+Notes here: https://github.com/guardian/regression/blob/master/tex/multivariate-linear-regression.pdf
+Here are additional notes on how to go from algorithm -> implementation https://github.com/guardian/regression/blob/master/notes/vectorised-impl-notes.pdf
+
+Exercises:
+- `linearMeanSquaredError` in `VectorisedErrorCalculator`
+- `meanNormalisedData` in `VectorisedFeatureScaler`
+- Getting a start on `vectorisedThetaUpdate` in `VectorisedGradientDescent`
+
+### Session 8: Vectorising your gradient descent implementation part 3
+
+We will finish our implementation of `vectorisedThetaUpdate` and `vectorisedGradientDescent` and make use of them to see how Linear Mean Squared error changes with our improved model (see: `GradientDescentVectorisedAndCheckTestSetApp`)
+
+### Session 9: Logistic regression + applying it to the Titanic dataset
 
