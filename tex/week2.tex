@@ -131,14 +131,12 @@
 
     One common technique is \textit{mean normalisation}. We can apply mean normalisation to our features in the following way: \\
     
-    Each feature $x_i$ has a range $s_i$ which is \{the max value in $x_i$\} - \{the min value in $x_i$\}. Each feature also has a mean $u_i$.
+    Each feature $x_j$ has a range $s_j$ which is \{the max value in $x_j$\} - \{the min value in $x_j$\}. Each feature also has a mean $u_j$.
     
-    Then for each point $j$ in $x_i$:
+    Then for each point $i$ in $x_j$:
     \[
-        x_i^{(j)} \leftarrow \frac{x_i^{(j)} - \mu_i^{(j)}}{s_i}
+        x_i^{(j)} \leftarrow \frac{x_j^{(i)} - \mu_j^{(i)}}{s_j}
     \]
-
-    and then for each $x_i^{(j)} $, $-0.5 \leq x_i^{(j)}  \leq 0.5$ \\
     
     Mean normalisation isn't the only approach to take for feature scaling, but it will work well enough for our purposes here. \textit{Min-max scaling} and \textit{unit vector scaling} are also common, but we won't cover them here. 
     
