@@ -1,3 +1,16 @@
 package model
 
-case class Passenger(id: Double, survived: Double, ticketClass: Double, sex: Double, age: Double, siblingsAboard: Double, parentsAboard: Double, embarkPort: Double)
+case class Passenger(
+  id: Int,
+  survived: Boolean,
+  ticketClass: Int,
+  name: String,
+  sex: String,
+  age: Option[Int],
+  numberOfSiblingsAboard: Int,
+  numberOfParentsAboard: Int,
+  ticketNumber: String,
+  passengerFare: Double,
+  cabin: Option[String],
+  embarkPort: String
+)
